@@ -1,7 +1,5 @@
-package com.example.eaetrr
+package com.example.myapplication.ui.theme
 
-import android.annotation.SuppressLint
-import android.health.connect.datatypes.units.Length
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -13,9 +11,9 @@ import androidx.lifecycle.ViewModel
              private set
         var actuel by mutableStateOf("0")
             private set
-        val opsansmoins = listOf("+", "x", "/", "%")
-        val opsanspourcentage = listOf("+", "x", "/","-")
-        val operateur = listOf("+", "x", "/","-","%")
+        private val opsansmoins = listOf("+", "x", "/", "%")
+        private val opsanspourcentage = listOf("+", "x", "/","-")
+        private val operateur = listOf("+", "x", "/","-","%")
 
 
 
@@ -54,14 +52,14 @@ import androidx.lifecycle.ViewModel
 
 
         fun calculer() {
-                if (!chaine.isBlank()) {
+                if (chaine.isNotBlank()) {
                     //je calcule ssi le dernier element n'est pas un operateur a part "%" ex: (3+4- ne calcule pas)
                     if (chaine.lastOrNull()?.toString() !in opsanspourcentage) {
                         // partie qui verifie si on doit affiché un Int ou un Float
-                        if ("." in chaine || "/" in chaine || "%" in chaine) {
-                            actuel = evaluerExpression(chaine).toString()
+                        actuel = if ("." in chaine || "/" in chaine || "%" in chaine) {
+                            evaluerExpression(chaine).toString()
                         } else {
-                            actuel = evaluerExpression(chaine).toLong().toString()
+                            evaluerExpression(chaine).toLong().toString()
                         }
                     }
                 }
@@ -74,7 +72,7 @@ import androidx.lifecycle.ViewModel
         }
 
 
-        fun evaluerExpression(expression: String): Double {
+        private fun evaluerExpression(expression: String): Double {
 
             // Si l'expression commence par -, ajouter 0 devant
             var expr = expression

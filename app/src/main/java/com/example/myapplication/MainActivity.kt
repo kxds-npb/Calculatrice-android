@@ -23,30 +23,19 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.CardElevation
 import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Shapes
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.RectangleShape
-import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -54,9 +43,9 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.eaetrr.CalculatorViewModel
 import com.example.myapplication.ui.theme.MyApplicationTheme
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.myapplication.ui.theme.CalculatorViewModel
 import com.example.myapplication.ui.theme.Purple40
 import com.example.myapplication.ui.theme.jaune
 
@@ -164,7 +153,7 @@ fun Affichage(chaine: String, actuel: String) {
 }
 
 @Composable
-fun monBouton(
+fun MonBouton(
     text : String,
     onClick: () -> Unit
 ){
@@ -444,13 +433,13 @@ fun BouttonsPortrait(viewModel: CalculatorViewModel) {
                 modifier = Modifier.fillMaxWidth()
             ) {
 
-                monBouton("C") {
+                MonBouton("C") {
                     viewModel.effacer()
                 }
-                monBouton("/") {
+                MonBouton("/") {
                     viewModel.ajouterCaractere("/")
                 }
-                monBouton("X") {
+                MonBouton("X") {
                     viewModel.ajouterCaractere("x")
                 }
 
@@ -478,19 +467,19 @@ fun BouttonsPortrait(viewModel: CalculatorViewModel) {
                 horizontalArrangement = Arrangement.SpaceAround ,
                 modifier = Modifier.fillMaxWidth()
             ) {
-                monBouton("7") {
+                MonBouton("7") {
                     viewModel.ajouterCaractere("7")
                     viewModel.calculer()
                 }
-                monBouton("8") {
+                MonBouton("8") {
                     viewModel.ajouterCaractere("8")
                     viewModel.calculer()
                 }
-                monBouton("9") {
+                MonBouton("9") {
                     viewModel.ajouterCaractere("9")
                     viewModel.calculer()
                 }
-                monBouton("-") {
+                MonBouton("-") {
                     viewModel.ajouterCaractere("-")
                 }
 
@@ -501,19 +490,19 @@ fun BouttonsPortrait(viewModel: CalculatorViewModel) {
                 horizontalArrangement = Arrangement.SpaceAround ,
                 modifier = Modifier.fillMaxWidth()
             ) {
-                 monBouton("4") {
+                 MonBouton("4") {
                    viewModel.ajouterCaractere("4")
                    viewModel.calculer()
                  }
-                monBouton("5") {
+                MonBouton("5") {
                    viewModel.ajouterCaractere("5")
                    viewModel.calculer()
                  }
-                monBouton("6") {
+                MonBouton("6") {
                    viewModel.ajouterCaractere("6")
                    viewModel.calculer()
                  }
-                monBouton("+") {
+                MonBouton("+") {
                    viewModel.ajouterCaractere("+")
                  }
             }
@@ -525,11 +514,11 @@ fun BouttonsPortrait(viewModel: CalculatorViewModel) {
             ) {
                 Column{
 
-                    monBouton("1") {
+                    MonBouton("1") {
                         viewModel.ajouterCaractere("1")
                         viewModel.calculer()
                     }
-                    monBouton("%") {
+                    MonBouton("%") {
                        viewModel.ajouterCaractere("%")
                        viewModel.calculer()
                     }
@@ -537,23 +526,23 @@ fun BouttonsPortrait(viewModel: CalculatorViewModel) {
                 }
 
                 Column {
-                    monBouton("2") {
+                    MonBouton("2") {
                         viewModel.ajouterCaractere("2")
                         viewModel.calculer()
                     }
-                    monBouton("0") {
+                    MonBouton("0") {
                         viewModel.ajouterCaractere("0")
                         viewModel.calculer()
                     }
                 }
 
                 Column {
-                    monBouton("3") {
+                    MonBouton("3") {
                         viewModel.ajouterCaractere("3")
                         viewModel.calculer()
                     }
 
-                    monBouton(".") {
+                    MonBouton(".") {
                         viewModel.ajouterCaractere(".")
                         viewModel.calculer()
                     }
@@ -592,7 +581,7 @@ fun BouttonsPortrait(viewModel: CalculatorViewModel) {
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun GreetingPreview() {
-    MyApplicationTheme() {
+    MyApplicationTheme {
         Surface {
             Detection()
         }
