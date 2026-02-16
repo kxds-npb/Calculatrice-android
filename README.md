@@ -67,6 +67,7 @@ Lancer sur un émulateur ou appareil réel
 
 📱 **Capture d’écran**
 
-(Ajouter ici des screenshots de ton application)
-![Screenshot_20251230-165851](https://github.com/user-attachments/assets/33ec0dd0-c2d4-43ae-bf13-fcd0ca514803)
+Screenshots de l'application 
+
+![Screenshot_20251230-165851ot_20251230-165851](https://github.com/user-attachments/assets/33ec0dd0-c2d4-43ae-bf13-fcd0ca514803)
 ![Screenshot_20251230-165857](https://github.com/user-attachments/assets/744050cf-6ae8-44ff-844e-10ad92fb2dca)
