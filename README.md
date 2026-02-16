@@ -14,11 +14,17 @@ Structurer une application Android application.
 **Fonctionnalités**
 
 ✅ Navigation entre écrans
+
 ✅ Interface responsive (portrait / paysage)
+
 ✅ Boutons génériques personnalisés
+
 ✅ Gestion d’état avec ViewModel
+
 ✅ Validation des entrées utilisateur
+
 ✅ Calculs dynamiques (ex : moyenne, aire, etc.)
+
 ✅ Thème personnalisé (formes, couleurs)
 
 🧱 **Architecture**
