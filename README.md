@@ -1,14 +1,18 @@
-📱**Nom du Projet**
+📱**Projet Calculatrice**
+
 Application Android développée en Kotlin avec Jetpack Compose, permettant la gestion et le traitement de données via une interface moderne et responsive.
 
-🎯** Objectif du Projet**
+🎯**Objectif du Projet**
+
 L’objectif principal est de :
 Mettre en pratique Jetpack Compose
 Implémenter une architecture propre (MVVM)
 Gérer l’état avec ViewModel
 Adapter l’interface en mode Portrait / Landscape
 Structurer une application Android application.
+
 **Fonctionnalités**
+
 ✅ Navigation entre écrans
 ✅ Interface responsive (portrait / paysage)
 ✅ Boutons génériques personnalisés
@@ -18,6 +22,7 @@ Structurer une application Android application.
 ✅ Thème personnalisé (formes, couleurs)
 
 🧱 **Architecture**
+
 Le projet suit l’architecture MVVM (Model – View – ViewModel) :
 UI (Compose) ->  ViewModel  -> Logique métier
 
@@ -30,6 +35,7 @@ Utilisation de :
 mutableStateOf , remember , viewModel()
 
 🛠️**Technologies Utilisées**
+
 Kotlin
 Jetpack Compose
 Material 3
@@ -38,6 +44,7 @@ MVVM Architecture
 Android Studio
 
 📂**Structure du Projet**
+
 App/
  ├── ui/
  │    ├── theme/
@@ -47,11 +54,13 @@ App/
  └── MainActivity.kt
 
 📦 **Exécution**
+
 Ouvrir dans Android Studio
 Synchroniser Gradle
 Lancer sur un émulateur ou appareil réel
 
 📱 **Capture d’écran**
+
 (Ajouter ici des screenshots de ton application)
 ![Screenshot_20251230-165851](https://github.com/user-attachments/assets/33ec0dd0-c2d4-43ae-bf13-fcd0ca514803)
 ![Screenshot_20251230-165857](https://github.com/user-attachments/assets/744050cf-6ae8-44ff-844e-10ad92fb2dca)
