@@ -1,3 +1,4 @@
+
 package com.example.myapplication
 
 
@@ -31,9 +32,9 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalConfiguration
@@ -43,9 +44,9 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.myapplication.ui.theme.MyApplicationTheme
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.myapplication.ui.theme.CalculatorViewModel
+import com.example.myapplication.ui.theme.MyApplicationTheme
 import com.example.myapplication.ui.theme.Purple40
 import com.example.myapplication.ui.theme.jaune
 

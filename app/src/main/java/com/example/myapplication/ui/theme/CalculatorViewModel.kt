@@ -18,21 +18,52 @@ import androidx.lifecycle.ViewModel
 
 
         fun ajouterCaractere(car: String) {
+
+            if (car == ".") {
+                // Sépare la chaîne par les opérateurs pour trouver le dernier nombre
+                val dernierNombre = chaine.split(*operateur.toTypedArray()).lastOrNull()
+                if (dernierNombre != null && !dernierNombre.contains(".")) {
+                    chaine += car
+                }
+                return // Sortir de la fonction après avoir traité le point
+            }
+
+            if (car in operateur && chaine.lastOrNull()?.toString() in operateur && chaine[chaine.length - 2].toString() in operateur) {
+                return
+            }
+
             //ce if bloque le nombre d'element entrer sans operateur
             val laChaineContientUnOperateurOuAUneLongueurInferieurA14 = chaine.any{
                 it.toString() in operateur } || chaine.length < 14 || car in operateur
+
             if( laChaineContientUnOperateurOuAUneLongueurInferieurA14 ) {
+
                 // aucun operateur au debut sauf moins
-                if (!((car in opsansmoins) && chaine.isBlank())) {
-                    // deux operateur ne s'affiche pas en mm temps sauf % (ex 5%+2 =2.05)
-                    if (!((car in operateur) && (chaine.lastOrNull()?.toString() in opsanspourcentage))) {
-                        //on ne divise pas par zero
-                        if ((car == "0") && (chaine.lastOrNull()?.toString() == "/")
-                        ) {
-                            actuel = "Erreur"
-                            chaine = ""
+                val caractereNestPasDansOperateurSansMoinsOuChaineNestPasVide =
+                    (car !in opsansmoins) || chaine.isNotBlank()
+
+                if (caractereNestPasDansOperateurSansMoinsOuChaineNestPasVide) {
+
+                    // deux operateur ne s'affiche pas en mm temps
+                    val caractereNestPasUnOperateurOuDernierElementDeLaChaineEstDifferentDuCaractere =
+                        car !in operateur || (chaine.lastOrNull()?.toString() != car)
+
+                    if (caractereNestPasUnOperateurOuDernierElementDeLaChaineEstDifferentDuCaractere) {
+
+                        if (chaine.isNotEmpty() && chaine.last().toString() in opsanspourcentage && car in opsansmoins) {
+                            // Si le dernier caractère est un opérateur et que l'utilisateur en tape un autre, on remplace le précédent.
+                            chaine = chaine.dropLast(1) + car
                         } else {
-                            chaine += car
+                            //on ne divise pas par zero
+                            val caractereEstZeroEtDernierElementDeLaChaineEstUnDiviseur =
+                                (car == "0") && (chaine.lastOrNull()?.toString() == "/")
+
+                            if (caractereEstZeroEtDernierElementDeLaChaineEstUnDiviseur) {
+                                actuel = "Erreur"
+                                chaine = ""
+                            } else {
+                                chaine += car
+                            }
                         }
                     }
                 }
@@ -73,17 +104,21 @@ import androidx.lifecycle.ViewModel
 
 
         private fun evaluerExpression(expression: String): Double {
+            var expr = expression
+
+            // Nettoyer l'expression en enlevant un éventuel opérateur à la fin
+            if (expr.lastOrNull()?.toString() in opsanspourcentage) {
+                expr = expr.dropLast(1)
+            }
 
             // Si l'expression commence par -, ajouter 0 devant
-            var expr = expression
             if (expr.startsWith("-")) {
                 expr = "0$expr"  // Transforme "-5" en "0-5"
             }
             // Gérer les cas comme "5*-3" -> "5*0-3"
-            expr = expr.replace("*-", "*0-")
-            expr = expr.replace("/-", "/0-")
-            expr = expr.replace("+-", "+0-")
-            expr = expr.replace("--", "-0-")
+            expr = expr.replace("x-", "x1-")
+            expr = expr.replace("/-", "/1-")
+            expr = expr.replace("+-", "-")
 
             val tokens = java.util.StringTokenizer(expr, "+-x/%", true)
             val nombres = mutableListOf<Double>()
@@ -132,8 +167,6 @@ import androidx.lifecycle.ViewModel
                             nombres[i] = resultat
                             nombres.removeAt(i + 1)
                             operateurs.removeAt(i)
-                        }else{
-                            error("Division par 0")
                         }
                     }
                     else -> i++
@@ -165,5 +198,3 @@ import androidx.lifecycle.ViewModel
             return nombres[0]
         }
     }
-
-
